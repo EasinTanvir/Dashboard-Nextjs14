@@ -13,6 +13,21 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        topBar: "#1D2327",
+        selectColor: "#2271B1",
+        hoverColor: "#388FE6",
+        submenu: "#151A1D",
+      },
+      minHeight: {
+        custom: "calc(100vh - 56px)",
+      },
+      maxHeight: {
+        custom: "calc(100vh - 56px)",
+      },
+      width: {
+        sidebar: "48px",
+      },
     },
   },
   plugins: [],
