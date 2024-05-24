@@ -1,40 +1,51 @@
 "use client";
+import React, { useEffect } from "react";
 import { Dashboard } from "@mui/icons-material";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
-import React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import { usePathname } from "next/navigation";
 import { MdOutlinePostAdd } from "react-icons/md";
-
+import { FaRegCommentDots } from "react-icons/fa";
+import { MdOutlineSettings } from "react-icons/md";
+import { IoMdHelpCircle } from "react-icons/io";
 type Props = {
   open: boolean;
   setOpen: (arg: boolean) => void;
 };
 
 const SideBar = ({ open, setOpen }: Props) => {
-  const [opens, setOpens] = React.useState(false);
-  const [opens2, setOpens2] = React.useState(false);
+  const [opens, setOpens] = React.useState<boolean>(false);
+  const [opens2, setOpens2] = React.useState<boolean>(false);
+  const [opens3, setOpens3] = React.useState<boolean>(false);
   const pathName = usePathname();
 
   const handleClick = () => {
     setOpens(!opens);
     setOpens2(false);
+    setOpens3(false);
+    setOpen(false);
   };
   const handleClick2 = () => {
     setOpens2(!opens2);
     setOpens(false);
+    setOpens3(false);
+  };
+  const handleClick3 = () => {
+    setOpens3(!opens3);
+    setOpens(false);
+    setOpens2(false);
   };
 
-  const isRootPath = pathName === "/";
-  const isUsersPath = pathName === "/users";
+  useEffect(() => {
+    if (open) {
+      setOpens(false);
+      setOpens(false);
+      setOpens3(false);
+    }
+  }, [open]);
 
   return (
     <>
@@ -85,12 +96,11 @@ const SideBar = ({ open, setOpen }: Props) => {
               Dashboard
             </span>
           </Link>
-
           <React.Fragment>
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
                 onClick={handleClick}
-                href="/user/all-users"
+                href="/user"
                 className={`flex  gap-2 items-center py-1 px-1  ${
                   pathName.startsWith("/user")
                     ? "bg-submenu text-white"
@@ -119,12 +129,10 @@ const SideBar = ({ open, setOpen }: Props) => {
                 unmountOnExit
               >
                 <div className="flex flex-col  px-7 pt-1 pb-2 text-sm gap-3 rounded-sm bg-submenu ">
-                  <Link href="/user/all-users">
+                  <Link href="/user">
                     <span
                       className={`${
-                        pathName === "/user/all-users"
-                          ? "text-white"
-                          : "text-slate-400"
+                        pathName === "/user" ? "text-white" : "text-slate-400"
                       }`}
                     >
                       All User
@@ -145,7 +153,6 @@ const SideBar = ({ open, setOpen }: Props) => {
               </Collapse>
             </div>
           </React.Fragment>
-
           <React.Fragment>
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
@@ -205,6 +212,129 @@ const SideBar = ({ open, setOpen }: Props) => {
               </Collapse>
             </div>
           </React.Fragment>
+
+          <Link
+            href="/setting"
+            className={`flex  ${
+              pathName === "/setting"
+                ? "bg-submenu text-white "
+                : "bg-topBar text-slate-500"
+            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+          >
+            <span>
+              <MdOutlineSettings className=" text-2xl" />
+            </span>
+            <span
+              style={{ marginTop: "3px" }}
+              className={` transition-all font-semibold  ease-in-out ${
+                open ? "opacity-0" : ""
+              }`}
+            >
+              Setting
+            </span>
+          </Link>
+
+          <React.Fragment>
+            <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
+              <Link
+                onClick={handleClick3}
+                href="/product/all-products"
+                className={`flex  gap-2 items-center py-1 px-1  ${
+                  pathName.startsWith("/product")
+                    ? "bg-submenu text-white"
+                    : "bg-topBar text-slate-500"
+                } hover:bg-submenu`}
+              >
+                <span>
+                  <MdOutlinePostAdd className=" text-2xl" />
+                </span>
+                <span
+                  style={{ marginTop: "4px" }}
+                  className={` transition-all font-semibold  ease-in-out ${
+                    open ? "opacity-0" : ""
+                  }`}
+                >
+                  Product
+                </span>
+                <div className="flex-1 flex justify-end items-center">
+                  <IoMdArrowDropdown />
+                </div>
+              </Link>
+              <Collapse
+                className={open ? "opacity-0" : ""}
+                in={opens3}
+                timeout="auto"
+                unmountOnExit
+              >
+                <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
+                  <Link href="/product/all-products">
+                    <span
+                      className={`${
+                        pathName === "/product/all-products"
+                          ? "text-white"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      All Products
+                    </span>
+                  </Link>
+                  <Link href="/product/add-product">
+                    <span
+                      className={`${
+                        pathName === "/product/add-product"
+                          ? "text-white"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      Add Post
+                    </span>
+                  </Link>
+                </div>
+              </Collapse>
+            </div>
+          </React.Fragment>
+
+          <Link
+            href="/comments"
+            className={`flex  ${
+              pathName === "/comments"
+                ? "bg-submenu text-white "
+                : "bg-topBar text-slate-500"
+            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+          >
+            <span>
+              <FaRegCommentDots className=" text-2xl" />
+            </span>
+            <span
+              style={{ marginTop: "3px" }}
+              className={` transition-all font-semibold  ease-in-out ${
+                open ? "opacity-0" : ""
+              }`}
+            >
+              Comments
+            </span>
+          </Link>
+
+          <Link
+            href="/help"
+            className={`flex  ${
+              pathName === "/help"
+                ? "bg-submenu text-white "
+                : "bg-topBar text-slate-500"
+            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+          >
+            <span>
+              <IoMdHelpCircle className=" text-2xl" />
+            </span>
+            <span
+              style={{ marginTop: "3px" }}
+              className={` transition-all font-semibold  ease-in-out ${
+                open ? "opacity-0" : ""
+              }`}
+            >
+              Help
+            </span>
+          </Link>
         </div>
       </div>
     </>
