@@ -3,12 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "./Input";
 
-interface FormData {
-  username: string;
-  email: string;
-  password: string;
-}
-
+import { User } from "../../../types/type";
 const AddNewUser = () => {
   const {
     register,
@@ -32,7 +27,7 @@ const AddNewUser = () => {
     mode: "onTouched",
   });
 
-  const onSubmitHandler: SubmitHandler<FormData> = (data: FormData) => {
+  const onSubmitHandler: SubmitHandler<User> = (data: User) => {
     console.log(data);
   };
 
