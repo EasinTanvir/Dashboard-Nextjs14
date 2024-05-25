@@ -13,6 +13,7 @@ import {
   PointElement,
   Legend,
   Tooltip,
+  ChartOptions,
 } from "chart.js";
 
 ChartJS.register(
@@ -57,7 +58,7 @@ const ChartData = ({ result }: { result: any }) => {
     ],
   };
 
-  const options = {
+  const options: ChartOptions<"line"> = {
     responsive: true,
     plugins: {
       legend: {
@@ -69,10 +70,11 @@ const ChartData = ({ result }: { result: any }) => {
         beginAtZero: true,
         ticks: {
           stepSize: 1, // Ensure steps are at integer intervals
-          callback: function (value) {
+          callback: function (value: number | string) {
             if (Number.isInteger(value)) {
-              return value;
+              return value.toString(); // Ensure the return type is string
             }
+            return "";
           },
         },
         title: {
@@ -83,7 +85,7 @@ const ChartData = ({ result }: { result: any }) => {
             size: 16, // Specify font size
             weight: "bold", // Specify font weight
           },
-          color: "#1D2327", // Specify text color
+          color: "#FF0000", // Specify text color
         },
       },
       x: {
@@ -95,12 +97,11 @@ const ChartData = ({ result }: { result: any }) => {
             size: 16, // Specify font size
             weight: "bold", // Specify font weight
           },
-          color: "#1D2327", // Specify text color
+          color: "#FF0000", // Specify text color
         },
       },
     },
   };
-
   const onChangeHandler = (event: any) => {
     console.log(event.target.value);
 
