@@ -238,7 +238,7 @@ const SideBar = ({ open, setOpen }: Props) => {
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
                 onClick={handleClick3}
-                href="/product/all-products"
+                href="/product"
                 className={`flex  gap-2 items-center py-1 px-1  ${
                   pathName.startsWith("/product")
                     ? "bg-submenu text-white"
@@ -267,10 +267,10 @@ const SideBar = ({ open, setOpen }: Props) => {
                 unmountOnExit
               >
                 <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
-                  <Link href="/product/all-products">
+                  <Link href="/product">
                     <span
                       className={`${
-                        pathName === "/product/all-products"
+                        pathName === "/product"
                           ? "text-white"
                           : "text-slate-400"
                       }`}

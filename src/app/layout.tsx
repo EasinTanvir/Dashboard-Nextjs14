@@ -25,7 +25,6 @@ export default function RootLayout({
           <Header />
 
           <main className="flex min-h-custom ">
-            <Toaster position="bottom-center" reverseOrder={false} />
             <MainContent>{children}</MainContent>
           </main>
           <footer></footer>

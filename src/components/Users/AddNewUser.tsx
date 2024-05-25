@@ -27,6 +27,7 @@ const AddNewUser = () => {
       username: "",
       email: "",
       password: "",
+      status: "SUBSCRIBER",
     },
     mode: "onTouched",
   });
@@ -35,7 +36,6 @@ const AddNewUser = () => {
     try {
       const { data } = await api.post("/api/user/add-user", datas);
       toast.success(data.message);
-
       reset();
     } catch (err: any) {
       if (err.response.data.email) {
@@ -51,7 +51,7 @@ const AddNewUser = () => {
     <div className="p-4 bg-slate-400 min-h-custom  flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmitHandler)}
-        className="bg-topBar w-[560px] p-4 rounded-md"
+        className="bg-topBar w-[580px] p-6 rounded-md"
       >
         <h1 className=" text-xl font-bold  text-center text-white">
           Add New User
@@ -89,8 +89,17 @@ const AddNewUser = () => {
             message="Password is required"
             min={6}
           />
+          <Input
+            label="Role"
+            id="status"
+            errors={errors}
+            required
+            select
+            type="select"
+            register={register}
+          />
         </div>
-        <SubmitButton isSubmitting={isSubmitting}>Add New Friend</SubmitButton>
+        <SubmitButton isSubmitting={isSubmitting}>Add New User</SubmitButton>
       </form>
     </div>
   );

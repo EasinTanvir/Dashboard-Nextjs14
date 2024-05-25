@@ -8,6 +8,7 @@ export interface Search {
     filter?: string;
     searchterm?: string;
     page?: string;
+    days?: string;
   };
 }
 export interface User {

@@ -20,7 +20,7 @@ const AllUsers = async ({ filter, page, searchTerm }: Filter) => {
   const numberOfPage = Array.from({ length: pageNum }, (_, i) => i + 1);
 
   return (
-    <div className="bg-slate-300 p-4 relative rounded-sm min-h-custom2">
+    <div className=" p-4 relative rounded-sm min-h-custom2">
       <div className=" flex justify-between">
         <SearchUser />
         <FilterUser />
