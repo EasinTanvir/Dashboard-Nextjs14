@@ -4,6 +4,7 @@ import "./globals.css";
 import MainContent from "@/components/MainContent";
 import Header from "@/components/Header";
 import { Toaster } from "react-hot-toast";
+import { SessionProviders } from "@/utils/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
+        <SessionProviders>
+          <Header />
 
-        <main className="flex min-h-custom ">
-          <Toaster position="bottom-center" reverseOrder={false} />
-          <MainContent>{children}</MainContent>
-        </main>
+          <main className="flex min-h-custom ">
+            <Toaster position="bottom-center" reverseOrder={false} />
+            <MainContent>{children}</MainContent>
+          </main>
+          <footer></footer>
+        </SessionProviders>
       </body>
     </html>
   );

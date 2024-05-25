@@ -9,11 +9,19 @@ export interface Search {
   };
 }
 export interface User {
-  username: string;
-  email: string;
+  username?: string;
+  email?: string;
   password?: string;
   id?: string;
   status?: string;
+}
+export interface SessionProps {
+  user: {
+    name: string;
+    email: string;
+    id: string;
+    image?: string;
+  };
 }
 
 export interface ButtonProps {
