@@ -21,6 +21,7 @@ const config: Config = {
       },
       minHeight: {
         custom: "calc(100vh - 56px)",
+        custom2: "calc(100vh - 88px)",
       },
       maxHeight: {
         custom: "calc(100vh - 56px)",
