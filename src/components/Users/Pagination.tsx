@@ -8,7 +8,7 @@ import {
 } from "next/navigation";
 
 type Props = {
-  numberOfPage: Number[];
+  numberOfPage: number[];
 };
 
 const UserPagination = ({ numberOfPage }: Props) => {
@@ -16,19 +16,27 @@ const UserPagination = ({ numberOfPage }: Props) => {
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
   const router = useRouter();
-  const paramValue = Number(searchParams.get("page"));
+  const paramValue = searchParams.get("page")
+    ? Number(searchParams.get("page"))
+    : 1;
+  console.log("paramValue = ", paramValue);
 
   const onChangeHandler = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
+    console.log("value =", value);
     params.set("page", value.toString());
     router.push(`${pathname}?${params}`);
   };
 
   return (
     <Pagination
+      color="primary"
       page={paramValue}
+      defaultPage={2}
+      siblingCount={0}
+      boundaryCount={2}
       count={numberOfPage.length}
       onChange={onChangeHandler}
       shape="rounded"

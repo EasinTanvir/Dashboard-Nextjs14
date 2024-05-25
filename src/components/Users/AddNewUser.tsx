@@ -4,6 +4,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "./Input";
 
 import { User } from "../../../types/type";
+import SubmitButton from "./SubmitButton";
+import api from "@/utils/api";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 const AddNewUser = () => {
   const {
     register,
@@ -27,8 +31,20 @@ const AddNewUser = () => {
     mode: "onTouched",
   });
 
-  const onSubmitHandler: SubmitHandler<User> = (data: User) => {
-    console.log(data);
+  const onSubmitHandler: SubmitHandler<User> = async (datas: User) => {
+    try {
+      const { data } = await api.post("/api/user/add-user", datas);
+      toast.success(data.message);
+
+      reset();
+    } catch (err: any) {
+      if (err.response.data.email) {
+        console.log(err);
+        setError("email", { message: err.response.data.email });
+      } else {
+        toast.error("User create failed");
+      }
+    }
   };
 
   return (
@@ -36,7 +52,6 @@ const AddNewUser = () => {
       <form
         onSubmit={handleSubmit(onSubmitHandler)}
         className="bg-topBar w-[560px] p-4 rounded-md"
-        action=""
       >
         <h1 className=" text-xl font-bold  text-center text-white">
           Add New User
@@ -45,6 +60,7 @@ const AddNewUser = () => {
         <div className="flex flex-col gap-3">
           <Input
             label="UserName"
+            type="text"
             id="username"
             placeholder="type username"
             errors={errors}
@@ -57,6 +73,7 @@ const AddNewUser = () => {
             id="email"
             errors={errors}
             required
+            type="email"
             placeholder="type email"
             register={register}
             message="Email is required"
@@ -65,6 +82,7 @@ const AddNewUser = () => {
             label="Password"
             id="password"
             errors={errors}
+            type="password"
             placeholder="type password"
             required
             register={register}
@@ -72,12 +90,7 @@ const AddNewUser = () => {
             min={6}
           />
         </div>
-        <button
-          className="bg-teal-700 px-3 py-2 rounded-md text-white font-semibold mt-4 hover:bg-teal-500"
-          type="submit"
-        >
-          Add User
-        </button>
+        <SubmitButton isSubmitting={isSubmitting}>Add New Friend</SubmitButton>
       </form>
     </div>
   );

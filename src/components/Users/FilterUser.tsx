@@ -51,8 +51,8 @@ const FilterUser = () => {
         <MenuItem value={4} onClick={(event) => handleMenuItemClick(event, 4)}>
           4 Users
         </MenuItem>
-        <MenuItem value={8} onClick={(event) => handleMenuItemClick(event, 8)}>
-          8 Users
+        <MenuItem value={6} onClick={(event) => handleMenuItemClick(event, 6)}>
+          6 Users
         </MenuItem>
       </Menu>
     </div>

@@ -15,3 +15,15 @@ export interface User {
   id?: string;
   status?: string;
 }
+
+export interface ButtonProps {
+  className: string;
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
+export interface ModalProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  item?: User;
+}

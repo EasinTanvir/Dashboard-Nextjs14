@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { FaSearch } from "react-icons/fa";
 import { fetchUser } from "../../../action/fetchUser";
 import UserList from "./UserList";
 import FilterUser from "./FilterUser";
 import { User } from "../../../types/type";
 import UserPagination from "./Pagination";
+import Loaders from "./Loaders";
 
 type Filter = {
   filter: string;
@@ -18,7 +19,7 @@ const AllUsers = async ({ filter, page }: Filter) => {
   const numberOfPage = Array.from({ length: pageNum }, (_, i) => i + 1);
 
   return (
-    <div className="bg-slate-300 p-4 rounded-sm">
+    <div className="bg-slate-300 p-4 relative rounded-sm min-h-custom2">
       <div className=" flex justify-between">
         <div className="relative">
           <input
@@ -32,19 +33,22 @@ const AllUsers = async ({ filter, page }: Filter) => {
       </div>
       <hr className="text-slate-700 my-3" />
 
-      <div className="grid grid-cols-4  mt-5">
-        <div className="grid  font-bold  text-md justify-center ">Name</div>
-        <div className="grid font-bold  text-md justify-center ">Email</div>
-        <div className="grid font-bold  text-md justify-center ">Status</div>
-        <div className="grid font-bold  text-md justify-center ">Role</div>
-      </div>
-      {userLists.result.map((item: User) => (
-        <UserList key={item.id} {...item} />
-      ))}
+      <Suspense fallback={<p>load</p>}>
+        <div className="grid grid-cols-4  mt-5">
+          <div className="grid  font-bold  text-md justify-center ">Name</div>
+          <div className="grid font-bold  text-md justify-center ">Email</div>
+          <div className="grid font-bold  text-md justify-center ">Status</div>
+          <div className="grid font-bold  text-md justify-center ">Role</div>
+        </div>
 
-      <div className="flex justify-center">
-        <UserPagination numberOfPage={numberOfPage} />
-      </div>
+        {userLists.result.map((item: User) => (
+          <UserList key={item.id} {...item} />
+        ))}
+
+        <div className="flex  justify-center absolute left-0 right-0 bottom-4">
+          <UserPagination numberOfPage={numberOfPage} />
+        </div>
+      </Suspense>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React from "react";
 import { User } from "../../../types/type";
+import UserButton from "./UserButton";
 
 const UserList = (item: User) => {
   return (
@@ -7,10 +7,7 @@ const UserList = (item: User) => {
       <div className="grid text-md justify-center ">{item.username}</div>
       <div className="grid text-md justify-center ">{item.email}</div>
       <div className="grid text-md justify-center ">{item.status}</div>
-      <div className="flex gap-1 justify-center ">
-        <button>Edit</button>
-        <button>Delete</button>
-      </div>
+      <UserButton item={item} />
     </div>
   );
 };
