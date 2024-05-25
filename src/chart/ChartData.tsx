@@ -67,8 +67,37 @@ const ChartData = ({ result }: { result: any }) => {
     scales: {
       y: {
         beginAtZero: true,
+        ticks: {
+          stepSize: 1, // Ensure steps are at integer intervals
+          callback: function (value) {
+            if (Number.isInteger(value)) {
+              return value;
+            }
+          },
+        },
+        title: {
+          display: true,
+          text: "Number of Users",
+          font: {
+            family: "Arial", // Specify font family
+            size: 16, // Specify font size
+            weight: "bold", // Specify font weight
+          },
+          color: "#1D2327", // Specify text color
+        },
       },
-      x: {},
+      x: {
+        title: {
+          display: true,
+          text: "Number of Days",
+          font: {
+            family: "Arial", // Specify font family
+            size: 16, // Specify font size
+            weight: "bold", // Specify font weight
+          },
+          color: "#1D2327", // Specify text color
+        },
+      },
     },
   };
 

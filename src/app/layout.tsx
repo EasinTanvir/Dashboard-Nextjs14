@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SessionProviders>
           <Header />
-
+          <Toaster position="bottom-center" reverseOrder={false} />
           <main className="flex min-h-custom ">
             <MainContent>{children}</MainContent>
           </main>
