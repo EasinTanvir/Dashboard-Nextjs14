@@ -31,6 +31,7 @@ const FilterUser = () => {
     if (!selectedValue) return;
 
     params.set("filter", selectedValue);
+    params.set("page", "1");
     router.push(`${pathname}?${params}`);
   }, [selectedValue]);
 

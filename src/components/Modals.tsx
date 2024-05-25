@@ -30,10 +30,12 @@ const Modals = ({ setOpen, open, item }: ModalProps) => {
     defaultValues: {
       username: item?.username,
       email: item?.email,
+      status: item?.status,
     },
     mode: "onTouched",
   });
 
+  //@ts-ignore
   const onSubmitHandler: SubmitHandler<User> = async (datas: User) => {
     try {
       //@ts-ignore
@@ -42,7 +44,7 @@ const Modals = ({ setOpen, open, item }: ModalProps) => {
       setOpen(false);
       toast.success(res.message);
     } catch (err: any) {
-      toast.success("User Update Failed");
+      toast.error("User Update Failed");
     }
   };
 
@@ -89,6 +91,16 @@ const Modals = ({ setOpen, open, item }: ModalProps) => {
               register={register}
               message="Email is required"
               value={item?.email}
+            />
+            <Input
+              label="Role"
+              id="status"
+              errors={errors}
+              required
+              select
+              type="select"
+              register={register}
+              value={item?.status}
             />
           </div>
           <SubmitButton isSubmitting={isSubmitting}>Update</SubmitButton>

@@ -7,11 +7,16 @@ const Loaders = dynamic(() => import("@/components/Users/Loaders"), {
 });
 
 const Users = ({ searchParams }: Search) => {
+  console.log(searchParams);
   return (
     <div className="p-4  ">
       <Suspense fallback={<Loaders />}>
         {/* @ts-ignore */}
-        <AllUsers filter={searchParams?.filter} page={searchParams?.page} />
+        <AllUsers
+          filter={searchParams?.filter}
+          page={searchParams?.page}
+          searchTerm={searchParams?.searchterm}
+        />
       </Suspense>
     </div>
   );

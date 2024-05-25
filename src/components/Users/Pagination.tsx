@@ -25,7 +25,6 @@ const UserPagination = ({ numberOfPage }: Props) => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    console.log("value =", value);
     params.set("page", value.toString());
     router.push(`${pathname}?${params}`);
   };

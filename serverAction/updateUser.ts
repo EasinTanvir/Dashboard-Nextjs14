@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 
 export const updateUser = async (formData: any, id: string) => {
   try {
+    console.log(formData);
     await PrismaCli.user.update({
       where: { id },
       data: formData,

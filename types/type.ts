@@ -5,7 +5,9 @@ export interface Children {
 }
 export interface Search {
   searchParams: {
-    filter: string;
+    filter?: string;
+    searchterm?: string;
+    page?: string;
   };
 }
 export interface User {
