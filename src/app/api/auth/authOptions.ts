@@ -48,6 +48,8 @@ export const authConfig: NextAuthOptions = {
       if (user) {
         //@ts-ignore
         (token.id = user?.id), (token.name = user?.username);
+        //@ts-ignore
+        token.status = user?.status;
       }
       return token;
     },
@@ -57,6 +59,8 @@ export const authConfig: NextAuthOptions = {
       session.user.id = token?.id;
       //@ts-ignore
       session.user.name = token?.name;
+      //@ts-ignore
+      session.user.status = token?.status;
 
       return session;
     },

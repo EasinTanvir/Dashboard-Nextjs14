@@ -116,7 +116,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                     open ? "opacity-0" : ""
                   }`}
                 >
-                  Users
+                  User
                 </span>
                 <div className="flex-1 flex justify-end items-center">
                   <IoMdArrowDropdown />
@@ -135,7 +135,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                         pathName === "/user" ? "text-white" : "text-slate-400"
                       }`}
                     >
-                      All User
+                      All Users
                     </span>
                   </Link>
                   <Link href="/user/add-user">
@@ -157,7 +157,7 @@ const SideBar = ({ open, setOpen }: Props) => {
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
                 onClick={handleClick2}
-                href="/post/all-posts"
+                href="/post"
                 className={`flex  gap-2 items-center py-1 px-1  ${
                   pathName.startsWith("/post")
                     ? "bg-submenu text-white"
@@ -186,12 +186,10 @@ const SideBar = ({ open, setOpen }: Props) => {
                 unmountOnExit
               >
                 <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
-                  <Link href="/post/all-posts">
+                  <Link href="/post">
                     <span
                       className={`${
-                        pathName === "/post/all-posts"
-                          ? "text-white"
-                          : "text-slate-400"
+                        pathName === "/post" ? "text-white" : "text-slate-400"
                       }`}
                     >
                       All Posts

@@ -2,6 +2,7 @@ import React from "react";
 import AvatarHeader from "./AvatarHeader";
 import { FaHome } from "react-icons/fa";
 import ToggleIcon from "./ToggleIcon";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -11,10 +12,10 @@ const Header = () => {
           <div className="md:hidden flex ">
             <ToggleIcon />
           </div>
-          <div className=" flex gap-1 items-center">
+          <Link href="/" className=" flex gap-1 items-center">
             <FaHome className="text-xl text-white" />
             <span className="font-semibold text-sm text-white">Visit Site</span>
-          </div>
+          </Link>
         </div>
         <AvatarHeader />
       </div>

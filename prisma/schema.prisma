@@ -38,4 +38,5 @@ enum Status {
   EDTOR
   AUTHOR
   SUBSCRIBER
+  GUEST
 }

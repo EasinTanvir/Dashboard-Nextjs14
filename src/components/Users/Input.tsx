@@ -12,6 +12,7 @@ interface Input {
   required: boolean;
   min?: Number;
   select?: boolean;
+  textarea?: boolean;
 }
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
   placeholder,
   type,
   select,
+  textarea,
 }: Input) => {
   return (
     <div className="flex flex-col gap-0 text-slate-950">
@@ -33,12 +35,29 @@ const Input = ({
         {label}
       </label>
 
-      {!select && (
+      {!select && !textarea && (
         <input
           type={type}
           id={id}
           placeholder={placeholder}
           className={` px-1 py-1 border-b-2  outline-none bg-transparent  text-white rounded-sm ${
+            errors[id]?.message ? "border-red-500" : "border-b-white"
+          }`}
+          {...register(id, {
+            required: { value: required, message },
+            minLength: min
+              ? { value: min, message: "Minimum 6 character is required" }
+              : null,
+          })}
+        />
+      )}
+      {textarea && (
+        <textarea
+          rows={5}
+          type={type}
+          id={id}
+          placeholder={placeholder}
+          className={` px-1 py-1 border-2 mt-2  outline-none bg-transparent  text-white rounded-sm ${
             errors[id]?.message ? "border-red-500" : "border-b-white"
           }`}
           {...register(id, {
@@ -56,12 +75,12 @@ const Input = ({
           className="bg-transparent text-white mt-1 border py-1 rounded-sm px-1 bg-topBar"
           {...register(id)}
         >
-          <option className="bg-topBar" value="ADMIN">
+          {/* <option className="bg-topBar" value="ADMIN">
             ADMIN
           </option>
           <option className="bg-topBar" value="EDTOR">
             EDTOR
-          </option>
+          </option> */}
           <option className="bg-topBar" value="AUTHOR">
             AUTHOR
           </option>

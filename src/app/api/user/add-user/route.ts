@@ -7,7 +7,7 @@ function validate(text: string) {
 }
 
 export async function POST(req: NextRequest) {
-  const { username, email, password } = await req.json();
+  const { username, email, password, status } = await req.json();
 
   if (
     validate(username) ||
@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
         email,
         password: hashPass,
         time: sevenDaysAgo,
+        status: status,
       },
     });
     return NextResponse.json(

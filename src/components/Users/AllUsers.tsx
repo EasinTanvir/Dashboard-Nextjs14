@@ -21,7 +21,7 @@ const AllUsers = async ({ filter, page, searchTerm }: Filter) => {
 
   return (
     <div className=" sm:p-4 p-0 relative rounded-sm min-h-custom2">
-      <div className=" flex sm:flex-row flex-col gap-4 bg-topBar p-2 px-5 rounded-sm  sm:justify-between">
+      <div className=" flex flex-row   gap-2 sm:bg-topBar p-2 sm:px-5 px-2 rounded-sm  justify-between">
         <SearchUser />
         <FilterUser />
       </div>
@@ -39,7 +39,7 @@ const AllUsers = async ({ filter, page, searchTerm }: Filter) => {
             Status
           </div>
           <div className="grid font-bold  text-md md:justify-center justify-start ">
-            Role
+            Action
           </div>
         </div>
 

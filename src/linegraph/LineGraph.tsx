@@ -29,7 +29,7 @@ import React from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-const ChartData = ({ result }: { result: any }) => {
+const LineGraph = ({ result }: { result: any }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
@@ -37,7 +37,7 @@ const ChartData = ({ result }: { result: any }) => {
   const days = searchParams.get("days") ? searchParams.get("days") : "7";
 
   const labels = result?.resultForLastThreeDays.map(
-    (item: any, i: any) => `Day ${i + 1}`
+    (item: any, i: any) => `Day ${i}`
   );
   const userPerDaya = result?.resultForLastThreeDays.map(
     (item: any) => item.data.length
@@ -137,4 +137,4 @@ const ChartData = ({ result }: { result: any }) => {
   );
 };
 
-export default ChartData;
+export default LineGraph;

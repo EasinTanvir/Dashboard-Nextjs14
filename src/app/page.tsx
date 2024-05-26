@@ -1,7 +1,8 @@
-import ChartData from "@/chart/ChartData";
 import api from "@/utils/api";
 import React from "react";
 import { Search } from "../../types/type";
+import LineGraph from "@/linegraph/LineGraph";
+
 const Home = async ({ searchParams }: Search) => {
   let result;
   const searchQuery = searchParams?.days ? searchParams.days : 7;
@@ -14,7 +15,7 @@ const Home = async ({ searchParams }: Search) => {
   return (
     <div className="min-h-custom bg-white  p-4 ">
       <div className="sm:w-[900px] w-[350px] ">
-        <ChartData result={result?.data} />
+        <LineGraph result={result?.data} />
       </div>
     </div>
   );
