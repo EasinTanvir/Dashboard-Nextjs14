@@ -51,8 +51,8 @@ const SideBar = ({ open, setOpen }: Props) => {
     <>
       <div
         className={`${
-          open ? "w-sidebar" : "w-52"
-        } bg-topBar  px-2 py-2 transition-all duration-200   fixed top-left-0 min-h-custom max-h-custom overflow-y-auto overflow-x-hidden `}
+          open ? "w-12 md:block hidden" : "w-52"
+        } bg-topBar  px-2 py-2 transition-all duration-200 z-50   fixed top-left-0 min-h-custom max-h-custom overflow-y-auto overflow-x-hidden `}
       >
         <div
           className={` ${

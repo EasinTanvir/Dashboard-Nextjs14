@@ -41,7 +41,11 @@ function AvatarHeader() {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
         >
-          <Avatar sx={{ width: 32, height: 32 }}>{session?.user?.name}</Avatar>
+          <Avatar
+            sx={{ width: 32, height: 32 }}
+            alt={`${session?.user?.name}`}
+            src=""
+          />
         </IconButton>
       </Tooltip>
 

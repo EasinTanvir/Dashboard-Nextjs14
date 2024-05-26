@@ -7,7 +7,6 @@ const Loaders = dynamic(() => import("@/components/Users/Loaders"), {
 });
 
 const Users = ({ searchParams }: Search) => {
-  console.log(searchParams);
   return (
     <div className="p-4  ">
       <Suspense fallback={<Loaders />}>

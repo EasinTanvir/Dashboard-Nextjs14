@@ -48,10 +48,10 @@ const AddNewUser = () => {
   };
 
   return (
-    <div className="p-4 bg-slate-400 min-h-custom  flex justify-center items-center">
+    <div className="p-4 md:bg-slate-400 min-h-custom  flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmitHandler)}
-        className="bg-topBar w-[580px] p-6 rounded-md"
+        className="bg-topBar sm:w-[580px] w-[650px] p-6 rounded-md"
       >
         <h1 className=" text-xl font-bold  text-center text-white">
           Add New User

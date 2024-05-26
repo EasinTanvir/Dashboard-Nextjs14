@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   }
 
   const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 3);
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 1);
 
   try {
     await PrismaCli.user.create({

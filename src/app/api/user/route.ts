@@ -1,34 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaCli } from "../../../../prismaCli/prismaClient";
-import { NextApiRequest } from "next";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
   const searchQuery = req.nextUrl.searchParams.get("test");
+  let NumberShow = Number(searchQuery) + 1;
 
-  let NumberShow;
-  NumberShow = Number(searchQuery) + 1;
-
-  if (NumberShow > 31) {
-    NumberShow = 31;
-  } else if (NumberShow < 3) {
-    NumberShow = 4;
+  if (NumberShow <= 4) {
+    NumberShow = 3;
+  } else if (NumberShow > 30) {
+    NumberShow = 30;
   }
 
   const currentDate = new Date();
-
   const resultForLastThreeDays = [];
 
-  for (let i = 1; i < NumberShow; i++) {
+  for (let i = 0; i < NumberShow; i++) {
+    // Changed loop to start from 0
     const startOfDay = new Date(currentDate);
     startOfDay.setDate(currentDate.getDate() - i);
     startOfDay.setHours(0, 0, 0, 0);
 
-    const endOfDay = new Date(currentDate);
-    endOfDay.setDate(currentDate.getDate() - i + 1);
-    endOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date(startOfDay);
+    endOfDay.setDate(startOfDay.getDate() + 1);
 
     try {
-      const dataForCurrentDay = await PrismaCli.user.findMany({
+      const dataForCurrentDay = await prisma.user.findMany({
         where: {
           time: {
             gte: startOfDay,
@@ -42,13 +40,13 @@ export async function GET(req: NextRequest) {
         data: dataForCurrentDay,
       });
     } catch (err) {
+      console.error(`Error fetching data for day ${i}:`, err);
       return NextResponse.json(
-        { message: `Fetch data for day ${i + 1} failed` },
+        { message: `Fetch data for day ${i} failed` },
         { status: 500 }
       );
     }
   }
 
-  // Return the response after the loop completes
   return NextResponse.json({ resultForLastThreeDays }, { status: 200 });
 }

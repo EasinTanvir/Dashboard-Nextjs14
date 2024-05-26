@@ -36,7 +36,7 @@ const FilterUser = () => {
   }, [selectedValue]);
 
   return (
-    <div>
+    <div className="sm:w-fit w-full ">
       <Tooltip title="Show User Per Page">
         <button
           className="bg-teal-600 hover:text-slate-200 text-white px-4 py-2 rounded-md"

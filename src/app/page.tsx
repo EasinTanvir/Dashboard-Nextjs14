@@ -13,7 +13,7 @@ const Home = async ({ searchParams }: Search) => {
 
   return (
     <div className="min-h-custom bg-white  p-4 ">
-      <div className="w-[900px]">
+      <div className="sm:w-[900px] w-[350px] ">
         <ChartData result={result?.data} />
       </div>
     </div>

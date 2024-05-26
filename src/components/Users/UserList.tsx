@@ -3,10 +3,16 @@ import UserButton from "./UserButton";
 
 const UserList = (item: User) => {
   return (
-    <div className="grid grid-cols-4  my-5">
-      <div className="grid text-md justify-center ">{item.username}</div>
-      <div className="grid text-md justify-center ">{item.email}</div>
-      <div className="grid text-md justify-center ">{item.status}</div>
+    <div className="grid   md:grid-cols-4 grid-cols-200px  my-5">
+      <div className="grid text-md md:justify-center justify-start ">
+        {item.username}
+      </div>
+      <div className="grid text-md md:justify-center justify-start ">
+        {item.email}
+      </div>
+      <div className="grid text-md md:justify-center justify-start ">
+        {item.status}
+      </div>
       <UserButton item={item} />
     </div>
   );
