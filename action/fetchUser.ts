@@ -15,13 +15,20 @@ export const fetchUser = async (
     searchQury = searchTerm;
   }
 
-  const totalUsers = (await PrismaCli.user.count()) - 1;
+  const totalUsers =
+    (await PrismaCli.user.count({
+      where: {
+        OR: [
+          { username: { contains: searchQury, mode: "insensitive" } },
+          { email: { contains: searchQury, mode: "insensitive" } },
+        ],
+      },
+    })) - 1;
   const skipUser = postsPerPage * (currentPage - 1);
-  console.log("skip", skipUser);
+
   let totalPages;
-  if (!searchTerm || searchTerm === "") {
-    totalPages = Math.ceil(totalUsers / postsPerPage);
-  }
+
+  totalPages = Math.ceil(totalUsers / postsPerPage);
 
   try {
     const result = await PrismaCli.user.findMany({
@@ -43,10 +50,6 @@ export const fetchUser = async (
       take: postsPerPage,
       skip: skipUser,
     });
-
-    if (searchTerm && searchTerm !== "") {
-      totalPages = result.length;
-    }
 
     return { result, totalPages };
   } catch (err: any) {

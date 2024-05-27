@@ -8,7 +8,7 @@ export const addNewCategory = async (formData: Category) => {
 
   try {
     await PrismaCli.category.create({ data: formData });
-    revalidatePath("/post/add-category");
+    revalidatePath("/post/add-post");
 
     return {
       message: "Category Added successfully",

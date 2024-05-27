@@ -61,9 +61,12 @@ const AddCategory = ({ cateLists }: { cateLists: Category[] }) => {
   const lists = [];
 
   return (
-    <div className="min-h-custom  w-full flex sm:flex-row  gap-10 p-4">
-      <div className=" flex-1   flex justify-center">
-        <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full p-4">
+    <div className="min-h-custom  w-full flex md:flex-row flex-col  sm:gap-10 gap-0 md:p-4 p-1">
+      <div className=" flex-1   ">
+        <form
+          onSubmit={handleSubmit(onSubmitHandler)}
+          className="sm:w-full w-fit md:p-4 p-3"
+        >
           <h1 className=" text-xl font-bold   text-topBar">Add New Category</h1>
           <hr className="my-4" />
           <div className="flex flex-col gap-6">

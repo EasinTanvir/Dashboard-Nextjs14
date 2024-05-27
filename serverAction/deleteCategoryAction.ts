@@ -1,8 +1,18 @@
 "use server";
 import { PrismaCli } from "../prismaCli/prismaClient";
 import { revalidatePath } from "next/cache";
+import { getServerCredentials } from "../session/serverSesseion";
 
 export const deleteCategoryAction = async (formData: any) => {
+  const session = await getServerCredentials();
+
+  //@ts-ignore
+  if (session?.user.status === "GUEST") {
+    return {
+      error: "Sorry Guest are not allowed to delete",
+    };
+  }
+
   const result = formData.map((item: any) => ({ id: item }));
 
   try {
@@ -17,6 +27,8 @@ export const deleteCategoryAction = async (formData: any) => {
       message: "Delete Category successfully",
     };
   } catch (err: any) {
-    throw new Error("User Update failed");
+    return {
+      error: "Category delete failed",
+    };
   }
 };

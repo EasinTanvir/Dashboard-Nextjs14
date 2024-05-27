@@ -12,17 +12,21 @@ export const addPostAction = async (formData: any) => {
     };
   }
 
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
+
   const sendData = {
     title: formData.title,
     desc: formData.desc,
     image: formData.image,
+    time: currentDate,
     //@ts-ignore
     userId: session.user.id,
   };
 
   try {
     await PrismaCli.posts.create({ data: sendData });
-    revalidatePath("/post/add-category");
+    revalidatePath("/post");
 
     return {
       message: "Post create successful",

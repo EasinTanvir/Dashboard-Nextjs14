@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 1);
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
 
   try {
     await PrismaCli.user.create({
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
         username,
         email,
         password: hashPass,
-        time: sevenDaysAgo,
+        time: currentDate,
         status: status,
       },
     });

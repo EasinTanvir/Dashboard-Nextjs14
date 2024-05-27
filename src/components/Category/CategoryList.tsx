@@ -38,9 +38,13 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
       //@ts-ignore
       const res = await deleteCategoryAction(selctAll);
       setSelctAll([]);
-      toast.success(res.message);
+      if (res.message) {
+        toast.success(res.message);
+      } else if (res.error) {
+        toast.error(res.error);
+      }
     } catch (err: any) {
-      toast.error("Delete Category Failed");
+      toast.error(err);
     } finally {
       setLoading(false);
     }
@@ -75,8 +79,8 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
       <hr className="my-4" />
 
       <div className="mt-3">
-        <div className="grid gap-3 grid-cols-5 bg-topBar px-4 py-3 rounded-sm text-white">
-          <div className="flex gap-1 items-center font-semibold">
+        <div className="grid md:gap-3 gap-0 md:grid-cols-5 grid-cols-3 bg-topBar px-4 py-3 rounded-sm text-white">
+          <div className="flex gap-1 col-span-1 items-center font-semibold">
             <input
               id="all"
               type="checkbox"
@@ -85,10 +89,10 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
             />
             <label htmlFor="all">Select All</label>
           </div>
-          <div className="grid col-span-2 justify-center font-semibold">
-            Category Name
+          <div className="grid sm:col-span-2 col-span-1 justify-center font-semibold">
+            Category
           </div>
-          <div className="grid col-span-2 justify-center font-semibold">
+          <div className="grid sm:col-span-2 col-span-1 justify-center font-semibold">
             Slug
           </div>
         </div>

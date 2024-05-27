@@ -23,7 +23,7 @@ const AllUsers = async ({ filter, page, searchTerm }: Filter) => {
     <div className=" sm:p-4 p-0 relative rounded-sm min-h-custom2">
       <div className=" flex flex-row   gap-2 sm:bg-topBar p-2 sm:px-5 px-2 rounded-sm  justify-between">
         <SearchUser />
-        <FilterUser />
+        <FilterUser text="User Per Page" />
       </div>
       <hr className="text-slate-700 my-3" />
 

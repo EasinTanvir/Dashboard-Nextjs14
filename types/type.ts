@@ -9,6 +9,7 @@ export interface Search {
     searchterm?: string;
     page?: string;
     days?: string;
+    posts?: string;
   };
 }
 export interface User {

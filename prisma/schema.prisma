@@ -43,7 +43,7 @@ model Category {
 
 enum Status {
   ADMIN
-  EDTOR
+  EDITOR
   AUTHOR
   SUBSCRIBER
   GUEST

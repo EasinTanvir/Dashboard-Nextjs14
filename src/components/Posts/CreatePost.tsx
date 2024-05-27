@@ -61,7 +61,7 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
   return (
     <div className=" min-h-custom  ">
       <div className=" relative">
-        <div className="flex justify-end px-10 py-10">
+        <div className="flex justify-end sm:p-10 p-2">
           <Buttons
             onClick={() => setOpen(!open)}
             className="bg-topBar text-white font-semibold px-4 py-2"
@@ -80,7 +80,7 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
             setFeatureImageUrl={setFeatureImageUrl}
           />
         </>
-        <div className="px-10 py-10 ">
+        <div className="sm:p-10 p-2 ">
           {status === "authenticated" ? (
             <>
               {" "}
@@ -99,7 +99,7 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
                   />
                 </div>
 
-                <div className="my-4">
+                <div className="min-h-fit sm:py-0 py-10">
                   <TextEditor value={editValue} setValue={setEditorValue} />
                 </div>
                 <Buttons className="bg-teal-700 py-2 px-6 font-semibold text-white mt-10">
