@@ -7,7 +7,7 @@ function validate(text: string) {
 }
 
 export async function POST(req: NextRequest) {
-  const { username, email, password } = await req.json();
+  const { username, email, password, status } = await req.json();
 
   if (
     validate(username) ||
@@ -48,12 +48,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - 1);
+
   try {
     await PrismaCli.user.create({
       data: {
         username,
         email,
         password: hashPass,
+        time: currentDate,
+        status: status,
       },
     });
     return NextResponse.json(

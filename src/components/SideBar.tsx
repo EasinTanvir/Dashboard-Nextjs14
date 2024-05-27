@@ -51,8 +51,8 @@ const SideBar = ({ open, setOpen }: Props) => {
     <>
       <div
         className={`${
-          open ? "w-sidebar" : "w-52"
-        } bg-topBar  px-2 py-2 transition-all duration-200   fixed top-left-0 min-h-custom max-h-custom overflow-y-auto overflow-x-hidden `}
+          open ? "max-w-12 min-w-12 md:block hidden" : "max-w-52 min-w-52"
+        } bg-topBar  px-2 py-2 transition-all duration-200 z-50   fixed top-left-0 min-h-custom max-h-custom overflow-y-auto overflow-x-hidden `}
       >
         <div
           className={` ${
@@ -116,7 +116,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                     open ? "opacity-0" : ""
                   }`}
                 >
-                  Users
+                  User
                 </span>
                 <div className="flex-1 flex justify-end items-center">
                   <IoMdArrowDropdown />
@@ -135,7 +135,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                         pathName === "/user" ? "text-white" : "text-slate-400"
                       }`}
                     >
-                      All User
+                      All Users
                     </span>
                   </Link>
                   <Link href="/user/add-user">
@@ -157,7 +157,7 @@ const SideBar = ({ open, setOpen }: Props) => {
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
                 onClick={handleClick2}
-                href="/post/all-posts"
+                href="/post"
                 className={`flex  gap-2 items-center py-1 px-1  ${
                   pathName.startsWith("/post")
                     ? "bg-submenu text-white"
@@ -186,12 +186,10 @@ const SideBar = ({ open, setOpen }: Props) => {
                 unmountOnExit
               >
                 <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
-                  <Link href="/post/all-posts">
+                  <Link href="/post">
                     <span
                       className={`${
-                        pathName === "/post/all-posts"
-                          ? "text-white"
-                          : "text-slate-400"
+                        pathName === "/post" ? "text-white" : "text-slate-400"
                       }`}
                     >
                       All Posts
@@ -206,6 +204,17 @@ const SideBar = ({ open, setOpen }: Props) => {
                       }`}
                     >
                       Add Post
+                    </span>
+                  </Link>
+                  <Link href="/post/add-category">
+                    <span
+                      className={`${
+                        pathName === "/post/add-category"
+                          ? "text-white"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      Add Category
                     </span>
                   </Link>
                 </div>
@@ -238,7 +247,7 @@ const SideBar = ({ open, setOpen }: Props) => {
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
                 onClick={handleClick3}
-                href="/product/all-products"
+                href="/product"
                 className={`flex  gap-2 items-center py-1 px-1  ${
                   pathName.startsWith("/product")
                     ? "bg-submenu text-white"
@@ -267,10 +276,10 @@ const SideBar = ({ open, setOpen }: Props) => {
                 unmountOnExit
               >
                 <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
-                  <Link href="/product/all-products">
+                  <Link href="/product">
                     <span
                       className={`${
-                        pathName === "/product/all-products"
+                        pathName === "/product"
                           ? "text-white"
                           : "text-slate-400"
                       }`}

@@ -8,6 +8,8 @@ export interface Search {
     filter?: string;
     searchterm?: string;
     page?: string;
+    days?: string;
+    posts?: string;
   };
 }
 export interface User {
@@ -17,6 +19,20 @@ export interface User {
   id?: string;
   status?: string;
 }
+export interface Category {
+  id?: string;
+  name: string;
+  slug: string;
+}
+export interface Post {
+  id?: string;
+  title: String;
+  desc: String;
+  image?: String;
+  category?: String;
+  userId?: String;
+}
+
 export interface SessionProps {
   user: {
     name: string;
@@ -29,7 +45,7 @@ export interface SessionProps {
 export interface ButtonProps {
   className: string;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export interface ModalProps {

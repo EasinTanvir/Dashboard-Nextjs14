@@ -22,14 +22,14 @@ const SearchUser = () => {
   }, 200);
 
   return (
-    <div className="relative">
+    <div className="relative  flex-1   ">
       <input
         onChange={(e) => debouncedSearchHandler(e.target.value)}
         type="text"
         placeholder="search here"
-        className="bg-transparent py-1 px-6 w-52 placeholder:to-white text-black outline-none  border-b-2 border-slate-800"
+        className="bg-transparent py-1 px-6 sm:w-52 w-full placeholder:to-white sm:text-white text-slate-700 outline-none  border-b-2 sm:border-white border-slate-700"
       />
-      <FaSearch className="absolute left-0 top-0 bottom-1 m-auto text-slate-600" />
+      <FaSearch className="absolute left-0 top-0 bottom-1 m-auto sm:text-white text-slate-700" />
     </div>
   );
 };

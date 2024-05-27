@@ -5,7 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import Tooltip from "@mui/material/Tooltip";
-const FilterUser = () => {
+const FilterUser = ({ text }: { text: string }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
   const open = Boolean(anchorEl);
@@ -36,10 +36,10 @@ const FilterUser = () => {
   }, [selectedValue]);
 
   return (
-    <div>
+    <div className="flex-1  flex justify-end ">
       <Tooltip title="Show User Per Page">
         <button
-          className="bg-teal-600 hover:text-slate-200 text-white px-4 py-2 rounded-md"
+          className="bg-teal-600 hover:text-slate-200 sm:text-white  px-4 py-2 rounded-md"
           onClick={handleClick}
         >
           Filter
@@ -47,13 +47,13 @@ const FilterUser = () => {
       </Tooltip>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem value={2} onClick={(event) => handleMenuItemClick(event, 2)}>
-          2 Users
+          <span> 2 {text}</span>
         </MenuItem>
         <MenuItem value={4} onClick={(event) => handleMenuItemClick(event, 4)}>
-          4 Users
+          <span> 4 {text}</span>
         </MenuItem>
         <MenuItem value={6} onClick={(event) => handleMenuItemClick(event, 6)}>
-          6 Users
+          <span> 6 {text}</span>
         </MenuItem>
       </Menu>
     </div>

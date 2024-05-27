@@ -55,10 +55,10 @@ const Modals = ({ setOpen, open, item }: ModalProps) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <div className="flex justify-center items-center min-h-custom">
+      <div className="flex justify-center items-center sm:mt-0 mt-36 sm:min-h-custom h-96">
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
-          className="bg-topBar w-[560px] p-4 rounded-md"
+          className="bg-topBar sm:w-[560px] w-96 p-4 rounded-md"
         >
           <div className="w-full  flex justify-end">
             <button onClick={handleClose}>

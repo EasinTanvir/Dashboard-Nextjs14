@@ -14,27 +14,37 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   username String
-  email    String  @unique
+  email    String
   password String
+  time     DateTime @default(now())
   image    String?
-  status   Status  @default(SUBSCRIBER)
+  status   Status   @default(SUBSCRIBER)
   post     Posts[]
 }
 
 model Posts {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  image       String?
-  userId      String  @db.ObjectId
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  desc     String
+  image    String?
+  category String?
+  time     DateTime @default(now())
+  userId   String   @db.ObjectId
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  slug String
 }
 
 enum Status {
   ADMIN
-  EDTOR
+  EDITOR
   AUTHOR
   SUBSCRIBER
+  GUEST
 }

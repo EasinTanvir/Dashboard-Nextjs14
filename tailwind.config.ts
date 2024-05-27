@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        // Adds a custom grid template column size
+        "200px": "repeat(4, 180px)",
+      },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -22,9 +27,12 @@ const config: Config = {
       minHeight: {
         custom: "calc(100vh - 56px)",
         custom2: "calc(100vh - 88px)",
+        custom3: "calc(100vh - 120px)",
       },
       maxHeight: {
         custom: "calc(100vh - 56px)",
+        custom2: "calc(100vh - 88px)",
+        custom3: "calc(100vh - 120px)",
       },
       width: {
         sidebar: "48px",
