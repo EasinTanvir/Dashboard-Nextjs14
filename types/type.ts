@@ -18,6 +18,12 @@ export interface User {
   id?: string;
   status?: string;
 }
+export interface Category {
+  id?: string;
+  name: string;
+  slug: string;
+}
+
 export interface SessionProps {
   user: {
     name: string;

@@ -25,12 +25,20 @@ model User {
 }
 
 model Posts {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  image       String?
-  userId      String  @db.ObjectId
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  desc     String
+  image    String?
+  category String?
+  time     DateTime @default(now())
+  userId   String   @db.ObjectId
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  slug String
 }
 
 enum Status {

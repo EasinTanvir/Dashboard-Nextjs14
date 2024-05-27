@@ -6,6 +6,7 @@ interface Input {
   errors?: any;
   message?: string;
   type?: string;
+  className?: string;
   placeholder?: string;
   value?: string;
   register: UseFormReturn["register"] | any;
@@ -22,6 +23,7 @@ const Input = ({
   register,
   required,
   message,
+  className,
   min,
   value,
   placeholder,
@@ -31,7 +33,12 @@ const Input = ({
 }: Input) => {
   return (
     <div className="flex flex-col gap-0 text-slate-950">
-      <label htmlFor={id} className={` font-semibold text-white`}>
+      <label
+        htmlFor={id}
+        className={`${className} font-semibold ${
+          className ? "text-topBar" : "text-white"
+        } `}
+      >
         {label}
       </label>
 
@@ -40,8 +47,12 @@ const Input = ({
           type={type}
           id={id}
           placeholder={placeholder}
-          className={` px-1 py-1 border-b-2  outline-none bg-transparent  text-white rounded-sm ${
-            errors[id]?.message ? "border-red-500" : "border-b-white"
+          className={`${className} px-1 py-1 border-b-2  outline-none bg-transparent  ${
+            className ? "text-topBar" : "text-white"
+          } rounded-sm ${
+            errors[id]?.message
+              ? "border-red-500"
+              : `${className ? "border-topBar" : "border-b-white"}`
           }`}
           {...register(id, {
             required: { value: required, message },

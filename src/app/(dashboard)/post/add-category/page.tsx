@@ -1,14 +1,15 @@
-import CreatePost from "@/components/Posts/CreatePost";
+import AddCategory from "@/components/Category/AddCategory";
 import React from "react";
 import fetchCategoryList from "../../../../../serverAction/fetchCategoryList";
 
-const AddPost = async () => {
+const Category = async () => {
   const cateLists = await fetchCategoryList();
+
   return (
     <>
-      <CreatePost cateLists={cateLists} />
+      <AddCategory cateLists={cateLists} />
     </>
   );
 };
 
-export default AddPost;
+export default Category;

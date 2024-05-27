@@ -206,6 +206,17 @@ const SideBar = ({ open, setOpen }: Props) => {
                       Add Post
                     </span>
                   </Link>
+                  <Link href="/post/add-category">
+                    <span
+                      className={`${
+                        pathName === "/post/add-category"
+                          ? "text-white"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      Add Category
+                    </span>
+                  </Link>
                 </div>
               </Collapse>
             </div>
