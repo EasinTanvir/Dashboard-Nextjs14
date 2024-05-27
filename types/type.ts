@@ -23,6 +23,14 @@ export interface Category {
   name: string;
   slug: string;
 }
+export interface Post {
+  id?: string;
+  title: String;
+  desc: String;
+  image?: String;
+  category?: String;
+  userId?: String;
+}
 
 export interface SessionProps {
   user: {

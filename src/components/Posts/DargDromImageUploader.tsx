@@ -6,7 +6,11 @@ import { useDropzone } from "react-dropzone";
 import toast from "react-hot-toast";
 import { Blocks } from "react-loader-spinner";
 import { RxCross2 } from "react-icons/rx";
-const DargDromImageUploader = () => {
+const DargDromImageUploader = ({
+  setFeatureImageUrl,
+}: {
+  setFeatureImageUrl: any;
+}) => {
   const [file, setFile] = useState<string>("");
   const [postImage, setoPostImage] = useState<string>("");
   const [postImageLoader, setoPostImageLoader] = useState<boolean>(false);
@@ -41,6 +45,7 @@ const DargDromImageUploader = () => {
       try {
         const profileUrl: any = await firebaseUploadHandler(file);
         setoPostImage(profileUrl);
+        setFeatureImageUrl(profileUrl);
       } catch (err) {
         toast.error("Image upload failed");
       } finally {

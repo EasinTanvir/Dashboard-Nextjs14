@@ -19,12 +19,16 @@ const PostSidebar = ({
   cateLists,
   selectedValue,
   setSelectedValue,
+  featureImageUrl,
+  setFeatureImageUrl,
 }: {
   open: any;
   setOpen: any;
   cateLists: any;
   selectedValue: any;
   setSelectedValue: any;
+  featureImageUrl: any;
+  setFeatureImageUrl: any;
 }) => {
   // Function to handle value change
   const handleChange = (event: any) => {
@@ -51,7 +55,7 @@ const PostSidebar = ({
 
         <div className="mt-3">
           <h3 className="text-white text-xl">Add Featured Image</h3>
-          <DargDromImageUploader />
+          <DargDromImageUploader setFeatureImageUrl={setFeatureImageUrl} />
         </div>
         <div className="mt-5">
           <FormControl

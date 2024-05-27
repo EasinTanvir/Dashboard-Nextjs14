@@ -9,7 +9,6 @@ import Link from "next/link";
 
 const UserButton = ({ item }: { item: User }) => {
   const { data: session, status } = useSession();
-  console.log(session);
 
   const [open, setOpen] = useState(false);
   const onEditHandler = () => {

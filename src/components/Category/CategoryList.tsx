@@ -75,17 +75,18 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
       <hr className="my-4" />
 
       <div className="mt-3">
-        <div className="grid gap-3 grid-cols-5 bg-topBar px-4 py-2 rounded-sm text-white">
+        <div className="grid gap-3 grid-cols-5 bg-topBar px-4 py-3 rounded-sm text-white">
           <div className="flex gap-1 items-center font-semibold">
             <input
+              id="all"
               type="checkbox"
               checked={selctAll.length === cateLists.length}
               onChange={onSelectAllHandler}
             />
-            Select All
+            <label htmlFor="all">Select All</label>
           </div>
           <div className="grid col-span-2 justify-center font-semibold">
-            Name
+            Category Name
           </div>
           <div className="grid col-span-2 justify-center font-semibold">
             Slug
@@ -96,7 +97,7 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
           cateLists.map((item: Category) => (
             <div
               key={item.id}
-              className="grid gap-3 grid-cols-5 mt-2 bg-slate-300 rounded-sm px-4 py-1"
+              className="grid gap-3 grid-cols-5 mt-2 bg-slate-300 rounded-sm px-4 py-3"
             >
               <div className="flex gap-1 items-center text-sm">
                 <input
@@ -108,8 +109,12 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
                 />
                 <label htmlFor={item.id}>Select</label>
               </div>
-              <div className="grid col-span-2 justify-center">{item.name}</div>
-              <div className="grid col-span-2 justify-center">{item.slug}</div>
+              <div className="grid font-semibold col-span-2 justify-center text-sm">
+                {item.name}
+              </div>
+              <div className="grid col-span-2 justify-center text-sm">
+                {item.slug}
+              </div>
             </div>
           ))
         ) : (
