@@ -13,19 +13,19 @@ const Home = async ({ searchParams }: Search) => {
     console.log(err);
   }
 
-  const postQuery = searchParams?.posts ? searchParams.posts : 7;
+  // const postQuery = searchParams?.posts ? searchParams.posts : 7;
 
-  try {
-    postResult = await api.get(`/api/posts/?posts=${postQuery}`);
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   postResult = await api.get(`/api/posts/?posts=${postQuery}`);
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
   return (
     <div className="min-h-custom bg-white  p-4 ">
-      <div className="sm:w-[900px] w-[350px] ">
+      {/* <div className="sm:w-[900px] w-[350px] ">
         <PostLineGraph result={postResult?.data} />
-      </div>
+      </div> */}
 
       <hr className="my-10" />
       <div className="sm:w-[900px] w-[350px] ">

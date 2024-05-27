@@ -47,7 +47,7 @@ const LineGraph = ({ result }: { result: any }) => {
     labels,
     datasets: [
       {
-        label: "Total Users",
+        label: "Total Posts",
         data: userPerDaya,
         backgroundColor: "#1D2327",
         borderColor: "#1D2327",
@@ -79,7 +79,7 @@ const LineGraph = ({ result }: { result: any }) => {
         },
         title: {
           display: true,
-          text: "Number of Users",
+          text: "Number of Posts",
           font: {
             family: "Arial", // Specify font family
             size: 16, // Specify font size
