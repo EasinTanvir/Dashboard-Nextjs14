@@ -13,7 +13,6 @@ export const addPostAction = async (formData: any) => {
   }
 
   const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() - 1);
 
   const sendData = {
     title: formData.title,
