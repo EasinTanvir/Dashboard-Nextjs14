@@ -1,10 +1,11 @@
 "use client";
-import { Alegreya } from "next/font/google";
-const alegreya = Alegreya({
-  subsets: ["cyrillic"],
-  weight: ["500", "600", "700", "800", "900"],
-});
-import { Line } from "react-chartjs-2";
+import dynamic from "next/dynamic";
+
+const DynamicLineChart = dynamic(
+  () => import("react-chartjs-2").then((mod) => mod.Line),
+  { ssr: false }
+);
+
 import {
   Chart as ChartJS,
   LineElement,
@@ -15,6 +16,13 @@ import {
   Tooltip,
   ChartOptions,
 } from "chart.js";
+
+import { Alegreya } from "next/font/google";
+
+const alegreya = Alegreya({
+  subsets: ["cyrillic"],
+  weight: ["500", "600", "700", "800", "900"],
+});
 
 ChartJS.register(
   LineElement,
@@ -131,7 +139,7 @@ const LineGraph = ({ result }: { result: any }) => {
       </div>
       <hr className="text-slate-800 py-3" />
       <div className="">
-        <Line data={data} options={options}></Line>
+        <DynamicLineChart data={data} options={options}></DynamicLineChart>
       </div>
     </div>
   );
