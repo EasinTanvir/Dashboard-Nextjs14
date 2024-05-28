@@ -89,7 +89,7 @@ function AvatarHeader() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose}>
-            <Avatar /> My account
+            <Avatar /> {session.user?.name}
           </MenuItem>
           <Divider />
 

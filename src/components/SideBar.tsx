@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { Dashboard } from "@mui/icons-material";
+import { Dashboard, Logout } from "@mui/icons-material";
 import Link from "next/link";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
@@ -11,15 +11,20 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { FaRegCommentDots } from "react-icons/fa";
 import { MdOutlineSettings } from "react-icons/md";
 import { IoMdHelpCircle } from "react-icons/io";
+import { ListItemIcon, MenuItem } from "@mui/material";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 type Props = {
   open: boolean;
   setOpen: (arg: boolean) => void;
 };
 
 const SideBar = ({ open, setOpen }: Props) => {
+  const router = useRouter();
   const [opens, setOpens] = React.useState<boolean>(false);
   const [opens2, setOpens2] = React.useState<boolean>(false);
   const [opens3, setOpens3] = React.useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const pathName = usePathname();
 
   const handleClick = () => {
@@ -47,12 +52,19 @@ const SideBar = ({ open, setOpen }: Props) => {
     }
   }, [open]);
 
+  const logout = async () => {
+    setAnchorEl(null);
+
+    const data = await signOut({ redirect: false, callbackUrl: "/auth" });
+    router.push(data.url);
+  };
+
   return (
     <>
       <div
         className={`${
           open ? "max-w-12 min-w-12 md:block hidden" : "max-w-52 min-w-52"
-        } bg-topBar  px-2 py-2 transition-all duration-200 z-50   fixed top-left-0 min-h-custom max-h-custom overflow-y-auto overflow-x-hidden `}
+        } bg-topBar   px-2 py-2 transition-all duration-200 z-50   fixed top-left-0 min-h-custom max-h-custom overflow-y-auto overflow-x-hidden `}
       >
         <div
           className={` ${
@@ -96,63 +108,6 @@ const SideBar = ({ open, setOpen }: Props) => {
               Dashboard
             </span>
           </Link>
-          <React.Fragment>
-            <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
-              <Link
-                onClick={handleClick}
-                href="/user"
-                className={`flex  gap-2 items-center py-1 px-1  ${
-                  pathName.startsWith("/user")
-                    ? "bg-submenu text-white"
-                    : "bg-topBar text-slate-500"
-                } hover:bg-submenu `}
-              >
-                <span>
-                  <FaUser className=" text-xl" />
-                </span>
-                <span
-                  style={{ marginTop: "4px" }}
-                  className={` transition-all font-semibold  ease-in-out ${
-                    open ? "opacity-0" : ""
-                  }`}
-                >
-                  User
-                </span>
-                <div className="flex-1 flex justify-end items-center">
-                  <IoMdArrowDropdown />
-                </div>
-              </Link>
-              <Collapse
-                className={open ? "opacity-0" : ""}
-                in={opens}
-                timeout="auto"
-                unmountOnExit
-              >
-                <div className="flex flex-col  px-7 pt-1 pb-2 text-sm gap-3 rounded-sm bg-submenu ">
-                  <Link href="/user">
-                    <span
-                      className={`${
-                        pathName === "/user" ? "text-white" : "text-slate-400"
-                      }`}
-                    >
-                      All Users
-                    </span>
-                  </Link>
-                  <Link href="/user/add-user">
-                    <span
-                      className={`${
-                        pathName === "/user/add-user"
-                          ? "text-white"
-                          : "text-slate-400"
-                      }`}
-                    >
-                      Add User
-                    </span>
-                  </Link>
-                </div>
-              </Collapse>
-            </div>
-          </React.Fragment>
           <React.Fragment>
             <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
               <Link
@@ -215,6 +170,64 @@ const SideBar = ({ open, setOpen }: Props) => {
                       }`}
                     >
                       Add Category
+                    </span>
+                  </Link>
+                </div>
+              </Collapse>
+            </div>
+          </React.Fragment>
+
+          <React.Fragment>
+            <div className="flex flex-col   transition-all duration-300 rounded-sm     gap-0">
+              <Link
+                onClick={handleClick}
+                href="/user"
+                className={`flex  gap-2 items-center py-1 px-1  ${
+                  pathName.startsWith("/user")
+                    ? "bg-submenu text-white"
+                    : "bg-topBar text-slate-500"
+                } hover:bg-submenu `}
+              >
+                <span>
+                  <FaUser className=" text-xl" />
+                </span>
+                <span
+                  style={{ marginTop: "4px" }}
+                  className={` transition-all font-semibold  ease-in-out ${
+                    open ? "opacity-0" : ""
+                  }`}
+                >
+                  User
+                </span>
+                <div className="flex-1 flex justify-end items-center">
+                  <IoMdArrowDropdown />
+                </div>
+              </Link>
+              <Collapse
+                className={open ? "opacity-0" : ""}
+                in={opens}
+                timeout="auto"
+                unmountOnExit
+              >
+                <div className="flex flex-col  px-7 pt-1 pb-2 text-sm gap-3 rounded-sm bg-submenu ">
+                  <Link href="/user">
+                    <span
+                      className={`${
+                        pathName === "/user" ? "text-white" : "text-slate-400"
+                      }`}
+                    >
+                      All Users
+                    </span>
+                  </Link>
+                  <Link href="/user/add-user">
+                    <span
+                      className={`${
+                        pathName === "/user/add-user"
+                          ? "text-white"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      Add User
                     </span>
                   </Link>
                 </div>
@@ -344,6 +357,17 @@ const SideBar = ({ open, setOpen }: Props) => {
               Help
             </span>
           </Link>
+        </div>
+
+        <div
+          className={`flex absolute left-2 right-2 text-white bottom-2 w-fit   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+        >
+          <MenuItem onClick={logout}>
+            <ListItemIcon className="text-white">
+              <Logout fontSize="small" />
+            </ListItemIcon>
+            Logout
+          </MenuItem>
         </div>
       </div>
     </>

@@ -61,25 +61,30 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
   return (
     <div className=" min-h-custom  ">
       <div className=" relative">
-        <div className="flex justify-end sm:p-10 p-2">
-          <Buttons
-            onClick={() => setOpen(!open)}
-            className="bg-topBar text-white font-semibold px-4 py-2"
-          >
-            Option
-          </Buttons>
-        </div>
-        <>
-          <PostSidebar
-            open={open}
-            setOpen={setOpen}
-            cateLists={cateLists}
-            selectedValue={categoryValue}
-            setSelectedValue={setCategoryValue}
-            featureImageUrl={featureImageUrl}
-            setFeatureImageUrl={setFeatureImageUrl}
-          />
-        </>
+        {status === "authenticated" && (
+          <>
+            {" "}
+            <div className="flex justify-end sm:p-10 p-2">
+              <Buttons
+                onClick={() => setOpen(!open)}
+                className="bg-topBar text-white font-semibold px-4 py-2"
+              >
+                Option
+              </Buttons>
+            </div>
+            <>
+              <PostSidebar
+                open={open}
+                setOpen={setOpen}
+                cateLists={cateLists}
+                selectedValue={categoryValue}
+                setSelectedValue={setCategoryValue}
+                featureImageUrl={featureImageUrl}
+                setFeatureImageUrl={setFeatureImageUrl}
+              />
+            </>
+          </>
+        )}
         <div className="sm:p-10 p-2 ">
           {status === "authenticated" ? (
             <>

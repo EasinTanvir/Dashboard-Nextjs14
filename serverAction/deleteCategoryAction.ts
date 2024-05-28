@@ -12,6 +12,11 @@ export const deleteCategoryAction = async (formData: any) => {
       error: "Sorry Guest are not allowed to delete",
     };
   }
+  if (!session) {
+    return {
+      error: "Unauthenticated",
+    };
+  }
 
   const result = formData.map((item: any) => ({ id: item }));
 

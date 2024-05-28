@@ -6,8 +6,8 @@ const Loading = () => {
   return (
     <div className="bg-slate-300 min-h-custom flex justify-center items-center ">
       <Blocks
-        height="50"
-        width="45"
+        height="40"
+        width="35"
         color="#4fa94d"
         ariaLabel="blocks-loading"
         wrapperStyle={{}}
