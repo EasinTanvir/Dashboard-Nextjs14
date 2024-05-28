@@ -1,10 +1,6 @@
 "use client";
-import dynamic from "next/dynamic";
 
-const DynamicLineChart = dynamic(
-  () => import("react-chartjs-2").then((mod) => mod.Line),
-  { ssr: false }
-);
+import { Line } from "react-chartjs-2";
 
 import {
   Chart as ChartJS,
@@ -139,7 +135,7 @@ const LineGraph = ({ result }: { result: any }) => {
       </div>
       <hr className="text-slate-800 py-3" />
       <div className="">
-        <DynamicLineChart data={data} options={options}></DynamicLineChart>
+        <Line data={data} options={options}></Line>
       </div>
     </div>
   );
