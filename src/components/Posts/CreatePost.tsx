@@ -37,14 +37,15 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
       return toast.error("Category is required");
     }
     //@ts-ignore
-    setLoader(true);
 
     const sendData: Post = {
       title,
       desc: editValue,
       image: featureImageUrl,
     };
+
     try {
+      setLoader(true);
       const res = await addPostAction(sendData);
       toast.success(res.message);
       setEditorValue("");
@@ -59,7 +60,7 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
   };
 
   return (
-    <div className=" min-h-custom  ">
+    <div className=" min-h-custom   ">
       <div className=" relative">
         {status === "authenticated" && (
           <>
@@ -107,7 +108,10 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
                 <div className="min-h-fit sm:py-0 py-10">
                   <TextEditor value={editValue} setValue={setEditorValue} />
                 </div>
-                <Buttons className="bg-teal-700 py-2 px-6 font-semibold text-white mt-10">
+                <Buttons
+                  disable={loader}
+                  className="bg-teal-700 py-2 px-6 font-semibold text-white mt-15"
+                >
                   {loader ? (
                     <Blocks
                       height="30"

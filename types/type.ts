@@ -44,6 +44,7 @@ export interface SessionProps {
 
 export interface ButtonProps {
   className: string;
+  disable?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
 }

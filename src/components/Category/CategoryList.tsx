@@ -79,8 +79,8 @@ const CategoryList = ({ cateLists }: { cateLists: Category[] }) => {
       <hr className="my-4" />
 
       <div className="mt-3">
-        <div className="grid md:gap-3 gap-0 md:grid-cols-5 grid-cols-3 bg-topBar px-4 py-3 rounded-sm text-white">
-          <div className="flex gap-1 col-span-1 items-center font-semibold">
+        <div className="grid md:gap-3 gap-0 md:grid-cols-6 grid-cols-3 bg-topBar px-4 py-3 rounded-sm text-white">
+          <div className="flex gap-1 sm:col-span-2 items-center font-semibold">
             <input
               id="all"
               type="checkbox"

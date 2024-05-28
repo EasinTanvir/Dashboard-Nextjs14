@@ -96,7 +96,7 @@ const AddCategory = ({ cateLists }: { cateLists: Category[] }) => {
           <SubmitButton isSubmitting={isSubmitting}>Add category</SubmitButton>
         </form>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 min-h-custom3 max-h-custom3 overflow-y-auto">
         <CategoryList cateLists={cateLists} />
       </div>
     </div>
