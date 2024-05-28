@@ -12,7 +12,7 @@ import { FaRegCommentDots } from "react-icons/fa";
 import { MdOutlineSettings } from "react-icons/md";
 import { IoMdHelpCircle } from "react-icons/io";
 import { ListItemIcon, MenuItem } from "@mui/material";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 type Props = {
   open: boolean;
@@ -21,6 +21,7 @@ type Props = {
 
 const SideBar = ({ open, setOpen }: Props) => {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [opens, setOpens] = React.useState<boolean>(false);
   const [opens2, setOpens2] = React.useState<boolean>(false);
   const [opens3, setOpens3] = React.useState<boolean>(false);
@@ -359,16 +360,18 @@ const SideBar = ({ open, setOpen }: Props) => {
           </Link>
         </div>
 
-        <div
-          className={`flex absolute left-2 right-2 text-white bottom-2 w-fit   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
-        >
-          <MenuItem onClick={logout}>
-            <ListItemIcon className="text-white">
-              <Logout fontSize="small" />
-            </ListItemIcon>
-            Logout
-          </MenuItem>
-        </div>
+        {status === "authenticated" && (
+          <div
+            className={`flex absolute left-2 right-2 text-white bottom-2 w-fit   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+          >
+            <MenuItem onClick={logout}>
+              <ListItemIcon className="text-white">
+                <Logout fontSize="small" />
+              </ListItemIcon>
+              Logout
+            </MenuItem>
+          </div>
+        )}
       </div>
     </>
   );
