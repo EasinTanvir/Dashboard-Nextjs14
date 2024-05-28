@@ -21,12 +21,12 @@ import { Blocks } from "react-loader-spinner";
 
 const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
   const { data: session, status } = useSession();
+  const [postLoader, setPostLoader] = useState(false);
   const [editValue, setEditorValue] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [categoryValue, setCategoryValue] = useState("");
   const [featureImageUrl, setFeatureImageUrl] = useState("");
   const [open, setOpen] = useState<boolean>(false);
-  const [loader, setLoader] = useState<boolean>(false);
 
   const onSubmitHandler = async () => {
     if (!title) {
@@ -45,17 +45,17 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
     };
 
     try {
-      setLoader(true);
+      setPostLoader(true);
       const res = await addPostAction(sendData);
       toast.success(res.message);
       setEditorValue("");
       setTitle("");
       setCategoryValue("");
       setFeatureImageUrl("");
+      setPostLoader(false);
     } catch (err: any) {
+      setPostLoader(false);
       toast.success(err.message);
-    } finally {
-      setLoader(false);
     }
   };
 
@@ -105,27 +105,29 @@ const CreatePost = ({ cateLists }: { cateLists: Category[] }) => {
                   />
                 </div>
 
-                <div className="min-h-fit sm:py-0 py-10">
+                <div className="min-h-72 sm:py-0 py-10 ">
                   <TextEditor value={editValue} setValue={setEditorValue} />
                 </div>
-                <Buttons
-                  disable={loader}
-                  className="bg-teal-700 py-2 px-6 font-semibold text-white mt-15"
-                >
-                  {loader ? (
-                    <Blocks
-                      height="30"
-                      width="25"
-                      color="#4fa94d"
-                      ariaLabel="blocks-loading"
-                      wrapperStyle={{}}
-                      wrapperClass="blocks-wrapper"
-                      visible={true}
-                    />
-                  ) : (
-                    "Create Post"
-                  )}
-                </Buttons>
+                <div className="mt-16">
+                  <button
+                    disabled={postLoader}
+                    className={`bg-teal-700 py-2 px-6 font-semibold text-white  rounded-md hover:opacity-80 transition-opacity`}
+                  >
+                    {postLoader ? (
+                      <Blocks
+                        height="30"
+                        width="35"
+                        color="#4fa94d"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        visible={true}
+                      />
+                    ) : (
+                      "Create Post"
+                    )}
+                  </button>
+                </div>
               </form>
             </>
           ) : (
