@@ -13,7 +13,7 @@ const SubmitButton = ({
   return (
     <button
       disabled={isSubmitting}
-      className="bg-teal-700 px-3 py-2 w-40 flex justify-center rounded-md text-white font-semibold mt-4 hover:bg-teal-500"
+      className="bg-btnColor px-3 py-2 w-40 flex justify-center rounded-md text-white font-semibold mt-4 "
       type="submit"
     >
       {isSubmitting ? (

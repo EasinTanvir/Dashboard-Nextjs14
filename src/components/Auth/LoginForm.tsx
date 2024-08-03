@@ -79,7 +79,7 @@ const LoginForm = () => {
         className="bg-topBar w-[560px] px-4 py-6  min-h-96 rounded-md"
       >
         {" "}
-        <h1 className=" text-2xl font-bold  text-center text-white ">Login</h1>
+        <h1 className=" text-3xl font-bold  text-center text-white  ">Login</h1>
         <hr className="mb-8 mt-3" />
         <div className="space-y-5">
           <Input
@@ -116,8 +116,8 @@ const LoginForm = () => {
                   color: "white",
                 },
                 "& .MuiSvgIcon-root": {
-                  backgroundColor: "#1D2327", // Set the background color here
-                  borderRadius: 1, // Optional: add some border radius
+                  backgroundColor: "#1D2327",
+                  borderRadius: 1,
                 },
               }}
             />

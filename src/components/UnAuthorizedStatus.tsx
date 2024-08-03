@@ -7,7 +7,7 @@ const UnAuthorizedStatus = ({ text }: { text: string }) => {
       <div className="w-full min-h-96 flex justify-center items-center">
         <Alert severity="warning">
           {text}
-          <Link className="underline ms-1 font-bold text-red-800" href="/auth">
+          <Link className="underline ms-1 font-bold text-btnColor" href="/auth">
             Login
           </Link>
         </Alert>

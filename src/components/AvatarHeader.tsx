@@ -102,7 +102,7 @@ function AvatarHeader() {
         </Menu>
       ) : (
         <Link className="flex items-center" href="/auth">
-          <Buttons className="bg-rose-700 text-white">Login</Buttons>
+          <Buttons className="bg-btnColor py-2 px-7 text-white">Login</Buttons>
         </Link>
       )}
     </React.Fragment>
