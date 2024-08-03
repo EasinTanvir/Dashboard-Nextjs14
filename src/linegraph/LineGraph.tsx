@@ -1,64 +1,46 @@
 "use client";
-import { Alegreya } from "next/font/google";
-const alegreya = Alegreya({
-  subsets: ["cyrillic"],
-  weight: ["500", "600", "700", "800", "900"],
-});
-import { Line } from "react-chartjs-2";
+import React from "react";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  LineElement,
+  BarElement,
   CategoryScale,
   LinearScale,
-  PointElement,
   Legend,
   Tooltip,
-  ChartOptions,
+  Filler,
 } from "chart.js";
 
 ChartJS.register(
-  LineElement,
+  BarElement,
   Tooltip,
   CategoryScale,
   LinearScale,
-  PointElement,
-  Legend
+  Legend,
+  Filler
 );
 
-import React from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-
-const LineGraph = ({ result }: { result: any }) => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const params = new URLSearchParams(searchParams);
-  const router = useRouter();
-  const days = searchParams.get("days") ? searchParams.get("days") : "7";
-
-  const labels = result?.resultForLastThreeDays.map(
-    (item: any, i: any) => `Day ${i}`
-  );
-  const userPerDaya = result?.resultForLastThreeDays.map(
-    (item: any) => item.data.length
-  );
-
+const LineGraph = () => {
   const data = {
-    labels,
+    labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     datasets: [
       {
-        label: "Total Users",
-        data: userPerDaya,
-        backgroundColor: "#1D2327",
+        label: "Total Click",
+        data: [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1],
+        backgroundColor: "rgba(54, 162, 235, 0.1)",
         borderColor: "#1D2327",
         pointBorderColor: "red",
         fill: true,
         tension: 0.4,
+        barThickness: 20,
+        categoryPercentage: 1.5,
+        barPercentage: 1.5,
       },
     ],
   };
 
-  const options: ChartOptions<"line"> = {
+  const options = {
+    maintainAspectRatio: false,
     responsive: true,
     plugins: {
       legend: {
@@ -69,72 +51,46 @@ const LineGraph = ({ result }: { result: any }) => {
       y: {
         beginAtZero: true,
         ticks: {
-          stepSize: 1, // Ensure steps are at integer intervals
-          callback: function (value: number | string) {
+          // stepSize: 1,
+          callback: function (value: any) {
             if (Number.isInteger(value)) {
-              return value.toString(); // Ensure the return type is string
+              return value.toString();
             }
             return "";
           },
         },
         title: {
           display: true,
-          text: "Number of Users",
+          text: "Number Of Product Sell",
           font: {
-            family: "Arial", // Specify font family
-            size: 16, // Specify font size
-            weight: "bold", // Specify font weight
+            family: "Arial",
+            size: 16,
+            weight: "bold",
+            color: "#FF0000",
           },
-          color: "#FF0000", // Specify text color
         },
       },
       x: {
+        beginAtZero: true,
+        // ticks: {
+        //   stepSize: 1,
+        // },
         title: {
           display: true,
-          text: "Number of Days",
+          text: "Date",
           font: {
-            family: "Arial", // Specify font family
-            size: 16, // Specify font size
-            weight: "bold", // Specify font weight
+            family: "Arial",
+            size: 16,
+            weight: "bold",
+            color: "#FF0000",
           },
-          color: "#FF0000", // Specify text color
         },
       },
     },
   };
-  const onChangeHandler = (event: any) => {
-    console.log(event.target.value);
 
-    params.set("days", event.target.value);
-    router.push(`${pathname}?${params}`);
-  };
-
-  return (
-    <div className=" ">
-      <div className="my-3 flex items-center justify-between">
-        <h1 className={`text-2xl  font-semibold  ${alegreya.className}`}>
-          User Analaysis
-        </h1>
-        <select
-          //@ts-ignore
-          value={days}
-          style={{ background: "#1D2327" }}
-          className="border px-4 py-2  text-white rounded-sm font-serif "
-          onChange={onChangeHandler}
-          name=""
-          id=""
-        >
-          <option value="3">Last 3 Days</option>
-          <option value="7">Last 7 Days</option>
-          <option value="30">Last Month</option>
-        </select>
-      </div>
-      <hr className="text-slate-800 py-3" />
-      <div className="">
-        <Line data={data} options={options}></Line>
-      </div>
-    </div>
-  );
+  //@ts-ignore
+  return <Bar className=" w-full" data={data} options={options}></Bar>;
 };
 
 export default LineGraph;

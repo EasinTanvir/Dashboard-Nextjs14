@@ -27,9 +27,9 @@ const SearchUser = () => {
         onChange={(e) => debouncedSearchHandler(e.target.value)}
         type="text"
         placeholder="search here"
-        className="bg-transparent py-1 px-6 sm:w-52 w-full placeholder:to-white sm:text-white text-slate-700 outline-none  border-b-2 sm:border-white border-slate-700"
+        className="bg-transparent py-2 px-10 text-lg md:w-60 w-full placeholder:to-white  text-slate-700 outline-none  border-b-2  border-slate-700"
       />
-      <FaSearch className="absolute left-0 top-0 bottom-1 m-auto sm:text-white text-slate-700" />
+      <FaSearch className="absolute text-xl left-0 top-1 bottom-0 m-auto  text-slate-700" />
     </div>
   );
 };

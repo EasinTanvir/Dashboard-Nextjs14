@@ -88,14 +88,14 @@ const SideBar = ({ open, setOpen }: Props) => {
             )}
           </button>
         </div>
-        <div className="flex flex-col mt-3  gap-3">
+        <div className="flex flex-col mt-3  gap-5">
           <Link
             href="/"
             className={`flex  ${
               pathName === "/"
                 ? "bg-submenu text-white "
                 : "bg-topBar text-slate-500"
-            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+            }   items-center  py-1   transition-all  rounded-sm  px-1   gap-2`}
           >
             <span>
               <Dashboard className=" text-2xl" />
@@ -118,7 +118,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                   pathName.startsWith("/post")
                     ? "bg-submenu text-white"
                     : "bg-topBar text-slate-500"
-                } hover:bg-submenu`}
+                } `}
               >
                 <span>
                   <MdOutlinePostAdd className=" text-2xl" />
@@ -141,7 +141,9 @@ const SideBar = ({ open, setOpen }: Props) => {
                 timeout="auto"
                 unmountOnExit
               >
-                <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
+                <div
+                  className={`flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm  `}
+                >
                   <Link href="/post">
                     <span
                       className={`${
@@ -187,7 +189,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                   pathName.startsWith("/user")
                     ? "bg-submenu text-white"
                     : "bg-topBar text-slate-500"
-                } hover:bg-submenu `}
+                }  `}
               >
                 <span>
                   <FaUser className=" text-xl" />
@@ -210,7 +212,9 @@ const SideBar = ({ open, setOpen }: Props) => {
                 timeout="auto"
                 unmountOnExit
               >
-                <div className="flex flex-col  px-7 pt-1 pb-2 text-sm gap-3 rounded-sm bg-submenu ">
+                <div
+                  className={`flex flex-col  px-7 pt-1 pb-2 text-sm gap-3 rounded-sm  `}
+                >
                   <Link href="/user">
                     <span
                       className={`${
@@ -242,7 +246,7 @@ const SideBar = ({ open, setOpen }: Props) => {
               pathName === "/setting"
                 ? "bg-submenu text-white "
                 : "bg-topBar text-slate-500"
-            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+            }   items-center  py-1   transition-all  rounded-sm  px-1   gap-2`}
           >
             <span>
               <MdOutlineSettings className=" text-2xl" />
@@ -266,7 +270,7 @@ const SideBar = ({ open, setOpen }: Props) => {
                   pathName.startsWith("/product")
                     ? "bg-submenu text-white"
                     : "bg-topBar text-slate-500"
-                } hover:bg-submenu`}
+                } `}
               >
                 <span>
                   <MdOutlinePostAdd className=" text-2xl" />
@@ -289,7 +293,9 @@ const SideBar = ({ open, setOpen }: Props) => {
                 timeout="auto"
                 unmountOnExit
               >
-                <div className="flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm bg-submenu ">
+                <div
+                  className={`flex flex-col  px-7 py-3 text-sm gap-2 rounded-sm  `}
+                >
                   <Link href="/product">
                     <span
                       className={`${
@@ -323,7 +329,7 @@ const SideBar = ({ open, setOpen }: Props) => {
               pathName === "/comments"
                 ? "bg-submenu text-white "
                 : "bg-topBar text-slate-500"
-            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+            }   items-center  py-1   transition-all  rounded-sm  px-1   gap-2`}
           >
             <span>
               <FaRegCommentDots className=" text-2xl" />
@@ -344,7 +350,7 @@ const SideBar = ({ open, setOpen }: Props) => {
               pathName === "/help"
                 ? "bg-submenu text-white "
                 : "bg-topBar text-slate-500"
-            }   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+            }   items-center  py-1   transition-all  rounded-sm  px-1   gap-2`}
           >
             <span>
               <IoMdHelpCircle className=" text-2xl" />
@@ -362,7 +368,7 @@ const SideBar = ({ open, setOpen }: Props) => {
 
         {status === "authenticated" && (
           <div
-            className={`flex absolute left-2 right-2 text-white bottom-2 w-fit   items-center  py-1   transition-all  rounded-sm hover:bg-submenu px-1   gap-2`}
+            className={`flex absolute left-2 right-2 text-white bottom-2 w-fit   items-center  py-1   transition-all  rounded-sm  px-1   gap-2`}
           >
             <MenuItem onClick={logout}>
               <ListItemIcon className="text-white">

@@ -12,7 +12,7 @@ const UserList = (item: User) => {
       </div>
       <div className="grid text-md md:justify-center justify-start ">
         {item.status === "ADMIN" ? (
-          <span className="bg-teal-300 px-4 py-1 rounded-md">
+          <span className="bg-btnColor text-white px-4 py-1 rounded-md">
             {item.status}
           </span>
         ) : (

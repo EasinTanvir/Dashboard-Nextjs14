@@ -41,3 +41,34 @@ export const fetchAllPosts = async (
     throw new Error("Fetch User Failed");
   }
 };
+
+export const allPosts = async () => {
+  try {
+    const count = await PrismaCli.posts.count();
+    const allPost = await PrismaCli.posts.findMany();
+
+    // Group by date and count occurrences
+    const groupedData = allPost.reduce((acc, post) => {
+      // Format date to YYYY-MM-DD
+      const dateKey = new Date(post.time).toISOString().split("T")[0];
+
+      //@ts-ignore
+      if (!acc[dateKey]) {
+        //@ts-ignore
+        acc[dateKey] = { ...post, count: 1 };
+      } else {
+        //@ts-ignore
+        acc[dateKey].count += 1;
+      }
+
+      return acc;
+    }, {});
+
+    // Convert groupedData object to an array of objects
+    const result = Object.values(groupedData);
+
+    return { allPost: result, count };
+  } catch (err: any) {
+    throw new Error("Fetch User Failed");
+  }
+};

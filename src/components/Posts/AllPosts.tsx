@@ -20,12 +20,12 @@ const AllPosts = ({
   const numberOfPage = Array.from({ length: totalPageNumber }, (_, i) => i + 1);
   return (
     <div className=" sm:p-4 p-0 relative rounded-sm min-h-custom3 max-h-custom3 overflow-y-auto">
-      <div className=" flex flex-row   gap-2 sm:bg-topBar p-2 sm:px-5 px-2 rounded-sm  justify-between">
+      <div className=" flex flex-row   gap-2  p-2 sm:px-5 px-2 rounded-sm  justify-between">
         <SearchUser />
         <FilterUser text="Post Per Page" />
       </div>
       <hr className="text-slate-700 my-3" />
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 pt-10">
         {post.map((item: any) => (
           <PostItem key={item.id} {...item} />
         ))}

@@ -37,14 +37,13 @@ const FilterUser = ({ text }: { text: string }) => {
 
   return (
     <div className="flex-1  flex justify-end ">
-      <Tooltip title="Show User Per Page">
-        <button
-          className="bg-teal-600 hover:text-slate-200 sm:text-white  px-4 py-2 rounded-md"
-          onClick={handleClick}
-        >
-          Filter
-        </button>
-      </Tooltip>
+      <button
+        className="bg-btnColor text-white  px-4 py-2 rounded-md"
+        onClick={handleClick}
+      >
+        Filter Post
+      </button>
+
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem value={2} onClick={(event) => handleMenuItemClick(event, 2)}>
           <span> 2 {text}</span>

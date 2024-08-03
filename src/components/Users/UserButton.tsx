@@ -51,7 +51,7 @@ const UserButton = ({ item }: { item: User }) => {
           </Tooltip>
         </>
       ) : (
-        <>
+        <Tooltip title="Please Login">
           <Link href="/auth" className=" w-full flex justify-center  mx-auto">
             <Buttons
               onClick={onDeleteHandler}
@@ -60,7 +60,7 @@ const UserButton = ({ item }: { item: User }) => {
               Unauthorized
             </Buttons>
           </Link>
-        </>
+        </Tooltip>
       )}
     </>
   );

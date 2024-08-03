@@ -37,6 +37,7 @@ const PostItem = ({ id, title, desc, image }: Post) => {
                 component="span"
                 variant="body2"
                 color="text.primary"
+                className="ql-editor"
                 dangerouslySetInnerHTML={{
                   __html:
                     displayWords.join(" ") +
@@ -62,7 +63,7 @@ const PostItem = ({ id, title, desc, image }: Post) => {
           }
         />
         <Typography>
-          <Tooltip title="Only Admin and Editor Can Take Action">
+          <Tooltip title="Only Admin Can Take Action">
             <div className=" w-full flex justify-center  mx-auto">
               <Buttons className="bg-rose-700  text-white ">Action</Buttons>
             </div>

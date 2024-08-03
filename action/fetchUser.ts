@@ -51,7 +51,8 @@ export const fetchUser = async (
       skip: skipUser,
     });
 
-    return { result, totalPages };
+    let count = await PrismaCli.user.count();
+    return { result, totalPages, count };
   } catch (err: any) {
     throw new Error("Fetch User Failed");
   }
