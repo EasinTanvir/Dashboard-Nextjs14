@@ -10,7 +10,7 @@ import ContextWrapper from "@/contextapi/Provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dasboard",
+  title: "Dashboard",
   description: "Modern dashboard application",
 };
 
